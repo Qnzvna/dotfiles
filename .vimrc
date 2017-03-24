@@ -10,6 +10,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -35,8 +36,8 @@ set shiftwidth=4
 set expandtab
 
 " buffer navigation made simple
-nnoremap <C-S-tab> :bprevious<CR>
-nnoremap <C-tab> :bnext<CR>
+nnoremap <C-L> :bn<CR>
+nnoremap <C-K> :bp<CR>
 
 " highlight 80 column
 if (exists('+colorcolumn'))
