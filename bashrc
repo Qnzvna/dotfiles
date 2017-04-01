@@ -54,3 +54,7 @@ fi
 if [ -f ~/.bash/bash_others ]; then
     . ~/.bash/bash_others
 fi
+
+if [ -f ~/.bash/bash.system ]; then
+    . ~/.bash/bash.system
+fi

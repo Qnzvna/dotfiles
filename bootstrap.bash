@@ -6,26 +6,41 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     system="linux"
 fi
 
-# Add system recognition check
-
 function bootstrap_bash {
+    echo "Bootstraping bashrc files..."
     mkdir -p ~/.bash
-    ln -s ~/.bash/bash_others "$(pwd)/bash_others"
+    ln -f -s "$(pwd)/bash_others" ~/.bash/bash_others
+    ln -f -s "$(pwd)/bash.linux" ~/.bash/bash.system
 
     if [ "$system" == "linux" ]; then
-        ln -s ~/.bashrc "$(pwd)/bashrc"
+        if [ -f ~/.bashrc ]; then
+            mv ~/.bashrc ~/bashrc.backup
+        fi
+        ln -s "$(pwd)/bashrc" ~/.bashrc
     elif [ "$system" == "mac" ]; then
-        ln -s ~/.bash_profile "$(pwd)/bashrc"
+        if [ -f ~/.bash_profile ]; then
+            mv ~/.bash_profile ~/bash_profile.backup
+        fi
+        ln -s "$(pwd)/bashrc" ~/.bash_profile
     fi
+    echo "Done."
 }
 
 function bootstrap_vim {
+    echo "Bootstraping vim files"
     # Install vim-plug
+    if [ ! -f ~/.vim/autoload/plug.vim ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
     # Create symlink for .vimrc
-    ln -s ~/.vimrc "$(pwd)/vimrc"
+    if [ -f ~/.vimrc ]; then
+        mv ~/.vimrc ~/vimrc.backup
+    fi
+    ln -s "$(pwd)/vimrc" ~/.vimrc
+    echo "Done."
 }
 
+echo "Bootstraping dotfiles into machine."
 bootstrap_bash
 bootstrap_vim
