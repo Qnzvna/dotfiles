@@ -41,6 +41,15 @@ function bootstrap_vim {
     echo "Done."
 }
 
+function bootstrap_tmux {
+    echo "Bootstraping tmux files"
+    if [ -f ~/.tmux.conf ]; then
+        mv ~/.tmux.conf ~/tmux.backup
+    fi
+    ln -s "$(pwd)/tmux.conf" ~/.tmux.conf
+    echo "Done."
+}
+
 echo "Bootstraping dotfiles into machine."
 bootstrap_bash
 bootstrap_vim
