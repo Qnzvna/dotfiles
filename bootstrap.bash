@@ -53,3 +53,4 @@ function bootstrap_tmux {
 echo "Bootstraping dotfiles into machine."
 bootstrap_bash
 bootstrap_vim
+bootstrap_tmux
