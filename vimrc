@@ -21,6 +21,7 @@ set nu
 set cursorline
 set encoding=utf-8
 set mouse=a
+set backspace=indent,eol,start
 
 " good looking vim
 hi clear SignColumn

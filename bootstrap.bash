@@ -10,7 +10,7 @@ function bootstrap_bash {
     echo "Bootstraping bashrc files..."
     mkdir -p ~/.bash
     ln -f -s "$(pwd)/bash_others" ~/.bash/bash_others
-    ln -f -s "$(pwd)/bash.linux" ~/.bash/bash.system
+    ln -f -s "$(pwd)/bash.$system" ~/.bash/bash.system
 
     if [ "$system" == "linux" ]; then
         if [ -f ~/.bashrc ]; then
