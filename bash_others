@@ -3,7 +3,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # vim and tmux colors
-export TERM="xterm-256color"
+export TERM="screen-256color"
 
 # Docker
 unset DOCKER_HOST

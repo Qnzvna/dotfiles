@@ -47,14 +47,14 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+if [ -f ~/.bash/bash.system ]; then
+    source ~/.bash/bash.system
+fi
+
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
 if [ -f ~/.bash/bash_others ]; then
     source ~/.bash/bash_others
-fi
-
-if [ -f ~/.bash/bash.system ]; then
-    source ~/.bash/bash.system
 fi
