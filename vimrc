@@ -1,7 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'altercation/vim-colors-solarized'
-Plug 'tomasr/molokai'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
@@ -10,7 +8,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'leafgarland/typescript-vim'
 
 call plug#end()
@@ -27,10 +24,6 @@ set backspace=indent,eol,start
 hi clear SignColumn
 set background=dark
 set laststatus=2
-try
-    colorscheme solarized
-catch
-endtry
 
 " 4 spaces tab
 set tabstop=4
