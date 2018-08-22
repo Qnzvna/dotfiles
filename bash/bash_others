@@ -9,7 +9,9 @@ export TERM="screen-256color"
 unset DOCKER_HOST
 
 # thefuck
-eval "$(thefuck --alias)"
+if [ -x "$(command -v thefuck)" ]; then
+    eval "$(thefuck --alias)"
+fi
 
 # tns-completion-start
 if [ -f /home/dserwin/.tnsrc ]; then
@@ -20,5 +22,8 @@ fi
 if [ -d /opt/Android/Sdk ]; then
     export ANDROID_HOME="/opt/Android/Sdk"
     export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+    export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 fi
 
+# add sbin to PATH
+PATH="$PATH:/sbin/"
