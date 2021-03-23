@@ -111,6 +111,8 @@ bindsym $mod+Shift+Left exec /home/dserwin/.scripts/i3-switch.py --move prev
 exec --no-startup-id xsetroot -solid "#333333"
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id dropbox start
+exec --no-startup-id redshift-gtk
 focus_follows_mouse no
 bindsym $mod+End move workspace to output right
 bindsym $mod+Home move workspace to output left

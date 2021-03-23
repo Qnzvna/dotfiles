@@ -1,17 +1,12 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'leafgarland/typescript-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
-" basic stuffs
+" basic stuff
 syntax on
 set nu
 set cursorline
@@ -29,28 +24,37 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" buffer navigation made simple
-nnoremap <C-L> :bn<CR>
-nnoremap <C-K> :bp<CR>
+" shortcuts
+nnoremap <silent> <C-N> :bn<CR>
+nnoremap <silent> <C-P> :bp<CR>
+nnoremap <silent> <C-X> :bdelete<CR>
+nnoremap <silent> <C-Q> :quit<CR>
+nnoremap <silent> <C-T> :Lexplore<CR>
+nnoremap <silent> <Tab> <C-W>w
+nnoremap <silent> <leader>q :qa<CR>
+nnoremap <silent> <leader>w :write<CR>
+nnoremap <silent> <leader>v :vsplit<CR>
+nnoremap <silent> <leader>h :split<CR>
 
-" highlight 80 column
+
+" highlight 120 column
 if (exists('+colorcolumn'))
-    set colorcolumn=80
+    set colorcolumn=120
     highlight ColorColumn ctermbg=240
 endif
 
+" netrw
+let g:netrw_winsize = 25
+let g:netrw_banner = 0
+let g:netrw_browse_split = 0
+
+augroup AutoDeleteNetrwHiddenBuffers
+  au!
+  au FileType netrw setlocal bufhidden=wipe
+augroup end
+
 " Airline stuff
 let g:airline_detect_paste=1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
 
-" NERD Tree
-nmap <C-n> :NERDTreeTabsToggle<CR>
-
-" Syntastics
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
-augroup mySyntastic
-    au!
-    au FileType tex let b:syntastic_mode = "passive"
-augroup END
