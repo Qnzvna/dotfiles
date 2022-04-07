@@ -1,11 +1,3 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-call plug#end()
-
 " basic stuff
 syntax on
 set nu
@@ -47,14 +39,4 @@ endif
 let g:netrw_winsize = 25
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0
-
-augroup AutoDeleteNetrwHiddenBuffers
-  au!
-  au FileType netrw setlocal bufhidden=wipe
-augroup end
-
-" Airline stuff
-let g:airline_detect_paste=1
-let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled = 1
 
