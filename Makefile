@@ -1,8 +1,12 @@
-.PHONY: vim tmux i3 alacritty tools xbind
+.PHONY: vim tmux i3 alacritty xbind tools
 
 HOSTNAME := $(shell hostname)
 
-install: vim tmux i3 alacritty
+install: vim tmux i3 alacritty xbind
+
+think: install
+
+dijkstra: install
 
 vim:
 	cp vim/.vimrc ${HOME}/.vimrc
@@ -11,7 +15,7 @@ tmux:
 	cp tmux/.tmux.conf ${HOME}/.tmux.conf
 
 i3:
-	cp i3/config ${HOME}/.config/i3/config
+	jinja2 templates/i3/config.tmpl configs/${HOSTNAME}.json > ${HOME}/.config/i3/config
 	jinja2 templates/i3/i3status.tmpl configs/${HOSTNAME}.json > ${HOME}/.config/i3/i3status
 
 alacritty:

@@ -100,26 +100,27 @@ for_window [title="Google Chrome"] move container to workspace $w_1
 for_window [class="jetbrains-idea"] move container to workspace $w_2
 for_window [class="keepassxc"] move container to scratchpad
 
+{% if name == 'dijkstra' %}
 workspace $w_0 output HDMI-2
 exec --no-startup-id xrandr --output HDMI-2 --rotate left
+{% endif %}
 
 bar {
-        position top
-        status_command i3status --config ~/.config/i3/i3status
-	font pango:Inconsolata 10
-        colors {
-            background $base02
-            statusline $base1
+    position top
+    status_command i3status --config ~/.config/i3/i3status
+    font pango:Inconsolata 10
+    colors {
+        background $base02
+        statusline $base1
 
-            focused_workspace  $base03   $unfcsd   $blue
-            active_workspace   $base03   $base02   $yellow
-            inactive_workspace $base03   $base02   $base01
-            urgent_workspace   $base03   $base03   $red
-        }
+        focused_workspace  $base03   $unfcsd   $blue
+        active_workspace   $base03   $base02   $yellow
+        inactive_workspace $base03   $base02   $base01
+        urgent_workspace   $base03   $base03   $red
+    }
 }
 
 bindsym $mod+t exec i3-input -F 'rename workspace to %s' -P 'New name: '
 
-exec --no-startup-id xautolock -time 10 -locker "i3lock && systemctl suspend"
 
 focus_follows_mouse no
