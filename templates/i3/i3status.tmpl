@@ -1,0 +1,82 @@
+general {
+	colors = true
+	interval = 5
+	color_good = "#859900"
+	color_degraded = "#cb4b16"
+	color_bad = "#dc322f"
+}
+
+cpu_usage {
+	format = " %usage"
+}
+
+load {
+	format = " %1min, %5min, %15min"
+}
+
+memory {
+	format = " %available"
+	threshold_degraded = "10%"
+}
+
+{% for disk in disks -%}
+disk "{{ disk.name }}" {
+	format = " %avail {{ disk.name }}"
+}
+{% endfor %}
+{% for e in ethernet -%}
+ethernet {{ e.name }} {
+	format_up = " %ip (%speed)"
+	format_down = " down"
+}
+{% endfor %}
+{% for w in wireless -%}
+wireless {{ w.name }} {
+	format_up = " %essid %ip (%bitrate)"
+	format_down = " down"
+}
+{% endfor %}
+{% for b in batteries -%}
+battery {{ b.name }} {
+	format = "%status %percentage"
+	format_down = ""
+	status_chr = ""
+	status_bat = ""
+	status_unk = ""
+	status_full = ""
+	path = "/sys/class/power_supply/{{ b.name }}/uevent"
+	low_threshold = 10
+    last_full_capacity = true
+}
+{% endfor %}
+{% for v in volumes -%}
+volume {{ v.name }} {
+    format = "(%volume)"
+    format_muted = ""
+    device = "pulse:{{ v.device }}"
+}
+{% endfor %}
+tztime local {
+	format = " %Y-%m-%d %H:%M:%S "
+}
+
+order += "cpu_usage"
+order += "load"
+order += "memory"
+{% for disk in disks -%}
+order += "disk {{ disk.name }}"
+{% endfor %}
+{% for w in wireless -%}
+order += "wireless {{ w.name }}"
+{% endfor %}
+{% for e in ethernet -%}
+order += "ethernet {{ e.name }}"
+{% endfor %}
+{% for b in batteries -%}
+order += "battery {{ b.name }}"
+{% endfor %}
+{% for v in volumes -%}
+order += "volume {{ v.name }}"
+{% endfor %}
+order += "tztime local"
+

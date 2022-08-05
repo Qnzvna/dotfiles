@@ -1,0 +1,19 @@
+{
+	"name": "think",
+	"disks": [
+		{"name": "/"}
+	],
+	"ethernet": [
+		{"name": "enp0s25"}
+	],
+	"wireless": [
+		{"name": "wlp3s0"}
+	],
+	"batteries": [
+		{"name": "BAT0"},
+		{"name": "BAT1"}
+	],
+    "volumes": [
+        {"name": "master", "device": "alsa_output.pci-0000_00_1b.0.analog-stereo"}
+    ]
+}

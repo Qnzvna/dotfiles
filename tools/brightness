@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+import sys
+
+max_brightness = '/sys/class/backlight/intel_backlight/max_brightness'
+brightness = '/sys/class/backlight/intel_backlight/brightness'
+arg = sys.argv[1]
+
+sign = arg[:1]
+
+min_b = 0
+max_b = 0
+with open(max_brightness, 'r') as f:
+    max_b = int(f.read())
+
+with open(brightness, 'r+') as f:
+    value = int(f.read())
+    if sign == '=':
+        value = int(arg[1:])
+    elif sign == '+':
+        value += int(arg[1:])
+    elif sign == '-':
+        value -= int(arg[1:])
+    else:
+        print('Invalid sign', file=sys.stderr)
+        sys.exit(-1)
+    value = min(value, max_b)
+    value = max(value, min_b)
+    f.write(str(value))
+

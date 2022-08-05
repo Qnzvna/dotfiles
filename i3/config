@@ -32,7 +32,7 @@ client.background       $base03
 
 floating_modifier $mod
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 bindsym $mod+space exec dmenu_run
@@ -101,6 +101,7 @@ for_window [class="jetbrains-idea"] move container to workspace $w_2
 for_window [class="keepassxc"] move container to scratchpad
 
 workspace $w_0 output HDMI-2
+exec --no-startup-id xrandr --output HDMI-2 --rotate left
 
 bar {
         position top
@@ -119,8 +120,6 @@ bar {
 
 bindsym $mod+t exec i3-input -F 'rename workspace to %s' -P 'New name: '
 
-exec --no-startup-id xrandr --output HDMI-2 --rotate left
 exec --no-startup-id xautolock -time 10 -locker "i3lock && systemctl suspend"
-exec --no-startup-id systemctl start syncthing --user
 
 focus_follows_mouse no
