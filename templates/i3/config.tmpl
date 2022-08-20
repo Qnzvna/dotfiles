@@ -105,6 +105,9 @@ workspace $w_0 output HDMI-2
 exec --no-startup-id xrandr --output HDMI-2 --rotate left
 {% endif %}
 
+exec --no-startup-id xbindkeys
+exec --no-startup-id xautolock -time 10 -detectsleep -locker "i3lock && systemctl suspend"
+
 bar {
     position top
     status_command i3status --config ~/.config/i3/i3status
